@@ -1,7 +1,7 @@
 include .envrc
 MIGRATIONS_PATH = ./db/migration
 test:
-	@go test -v ./...
+	@go test -v -cover ./...
 migration:
 	@migrate create -seq -ext sql -dir $(MIGRATIONS_PATH) $(filter-out $@,$(MAKECMDGOALS))
 
