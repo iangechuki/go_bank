@@ -10,16 +10,16 @@ CREATE TABLE "accounts" (
 -- Create the entries table
 CREATE TABLE "entries" (
   "id" bigserial PRIMARY KEY,
-  "account_id" bigint,
-  "amount" bigint NOT NULL DEFAULT 0,  -- Assuming a default of 0 instead of a timestamp
+  "account_id" bigint NOT NULL,
+  "amount" bigint NOT NULL,  -- Assuming a default of 0 instead of a timestamp
   "created_at" timestamptz NOT NULL DEFAULT now()
 );
 
 -- Create the transfers table
 CREATE TABLE "transfers" (
   "id" bigserial PRIMARY KEY,
-  "from_account_id" bigint,
-  "to_account_id" bigint,
+  "from_account_id" bigint NOT NULL,
+  "to_account_id" bigint NOT NULL,
   "amount" bigint NOT NULL,
   "created_at" timestamptz NOT NULL DEFAULT now()
 );

@@ -3,24 +3,29 @@ package db
 import (
 	"database/sql"
 	"log"
+	"os"
 	"testing"
 
 	_ "github.com/lib/pq"
 )
-
-var testQueries *Queries
 
 const (
 	dbDriver = "postgres"
 	dbSource = "postgresql://admin:adminpassword@localhost:5432/go_bank?sslmode=disable"
 )
 
+var testDB *sql.DB
+var testQueries *Queries
+
 func TestMain(m *testing.M) {
-	conn, err := sql.Open(dbDriver, dbSource)
+	var err error
+
+	testDB, err = sql.Open(dbDriver, dbSource)
 	if err != nil {
 		log.Fatal(err)
 	}
-	testQueries = New(conn)
+	testQueries = New(testDB)
+
 	log.Println("test db connected")
-	m.Run()
+	os.Exit(m.Run())
 }
