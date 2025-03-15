@@ -14,4 +14,10 @@ migrate-down:
 sqlc:
 	@sqlc generate
 
+build:
+	@go build -o bin/go_bank
+
+server: build
+	@./bin/go_bank
+
 .PHONY: migration migrate-up migrate-down sqlc test
