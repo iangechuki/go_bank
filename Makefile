@@ -1,5 +1,5 @@
-include .envrc
 MIGRATIONS_PATH = ./db/migration
+DB_ADDR = postgres://admin:adminpassword@localhost:5432/go_bank?sslmode=disable
 test:
 	@go test -v -cover ./...
 migration:
