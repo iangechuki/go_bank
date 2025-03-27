@@ -20,4 +20,6 @@ build:
 server: build
 	@./bin/go_bank
 
-.PHONY: migration migrate-up migrate-down sqlc test
+mock:
+	mockgen -package mockdb -destination db/mock/store.go github.com/iangechuki/go_bank/db/sqlc Store
+.PHONY: migration migrate-up migrate-down sqlc test build server mock

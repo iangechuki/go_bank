@@ -11,8 +11,8 @@ var rnd *rand.Rand
 func init() {
 	rnd = rand.New(rand.NewSource(time.Now().UnixNano()))
 }
-func RandInt(min, max int) int {
-	return rnd.Intn(max-min+1) + min
+func RandInt(min, max int) int64 {
+	return int64(rnd.Intn(max-min+1) + min)
 }
 func RandomString(n int) string {
 	k := len(alphabet)
