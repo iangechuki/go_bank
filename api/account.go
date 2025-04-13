@@ -12,7 +12,7 @@ import (
 
 type createAccountRequest struct {
 	Owner    string `json:"owner" binding:"required"`
-	Currency string `json:"currency" binding:"required,oneof=USD EUR CAD"`
+	Currency string `json:"currency" binding:"required,oneof=currency"`
 }
 
 func (server *Server) createAccount(ctx *gin.Context) {
@@ -21,7 +21,6 @@ func (server *Server) createAccount(ctx *gin.Context) {
 		ctx.JSON(http.StatusBadRequest, errorResponse(err))
 		return
 	}
-
 	arg := db.CreateAccountParams{
 		Owner:    req.Owner,
 		Currency: req.Currency,

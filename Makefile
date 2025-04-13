@@ -22,4 +22,8 @@ server: build
 
 mock:
 	mockgen -package mockdb -destination db/mock/store.go github.com/iangechuki/go_bank/db/sqlc Store
-.PHONY: migration migrate-up migrate-down sqlc test build server mock
+docker-up:
+	sudo docker compose up --build
+docker-stop:
+	sudo docker stop $(sudo docker ps -q)
+.PHONY: migration migrate-up migrate-down sqlc test build server mock docker-up docker-stop
