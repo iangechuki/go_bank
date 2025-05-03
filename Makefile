@@ -8,9 +8,15 @@ migration:
 migrate-up:
 	@migrate -path=$(MIGRATIONS_PATH) -database=$(DB_ADDR) up
 
+migrate-up1:
+	@migrate -path=$(MIGRATIONS_PATH) -database=$(DB_ADDR) up 1
+
 migrate-down: 
 	@migrate -path=$(MIGRATIONS_PATH) -database=$(DB_ADDR) down $(filter-out $@,$(MAKECMDGOALS))
 
+migrate-down1:
+	@migrate -path=$(MIGRATIONS_PATH) -database=$(DB_ADDR) down 1
+	
 sqlc:
 	@sqlc generate
 
